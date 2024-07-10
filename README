@@ -1,0 +1,43 @@
+To start application download repo and main folder run it using Docker: docker-compose up -d --build
+
+Imagine you are the boss of SCA.
+So, to manipulate your cats you must be authorized. (username - admin, password - password)
+After authorization you can do CRUD operations with any model you want.
+All commands are created in postman collection. (SpyCatAgency API json file)
+Also you can check how does login endpoint work.
+All variables are written in .env file. I did not add to gitignore as there is no sense in privacy.
+
+
+Cat Management: Create, read, update, and delete cat records.
+Mission Management: Create, read, update, complete, and delete mission records, with validation to ensure each mission has a valid cat.
+Target Management: Add, read, update, complete, and delete targets associated with missions. Targets can also have notes updated.
+Authentication: Basic login functionality for user authentication.
+Key Features:
+Cats:
+
+POST /cats: Create a new cat
+GET /cats: Retrieve all cats
+GET /cats/:id: Retrieve a cat by ID
+PUT /cats/:id: Update a cat by ID
+DELETE /cats/:id: Delete a cat by ID
+Missions:
+
+POST /missions: Create a new mission
+GET /missions: Retrieve all missions
+GET /missions/:id: Retrieve a mission by ID
+PUT /missions/:id: Update a mission by ID
+DELETE /missions/:id: Delete a mission by ID
+PUT /missions/:id/complete: Mark a mission as complete
+Targets:
+
+POST /missions/:id/targets: Add a new target to a mission
+GET /missions/:id/targets: Retrieve targets by mission ID
+GET /targets: Retrieve all targets
+GET /targets/:id: Retrieve a target by ID
+PUT /targets/:id: Update a target by ID
+DELETE /targets/:id: Delete a target by ID
+PUT /targets/:id/complete: Mark a target as complete
+PUT /targets/:id/notes: Update notes for a target
+Authentication:
+
+POST /login: Login endpoint for user authentication
