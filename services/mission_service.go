@@ -4,8 +4,8 @@ package services
 
 import (
 	"errors"
-	"spycat/spycat/models"
-	"spycat/spycat/repositories"
+	"spycat/models"
+	"spycat/repositories"
 )
 
 type MissionService struct {

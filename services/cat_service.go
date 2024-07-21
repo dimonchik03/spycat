@@ -1,8 +1,8 @@
 package services
 
 import (
-	"spycat/spycat/models"
-	"spycat/spycat/repositories"
+	"spycat/models"
+	"spycat/repositories"
 )
 
 type CatService struct {
@@ -31,6 +31,7 @@ func (s *CatService) GetCat(id uint) (*models.Cat, error) {
 
 func (s *CatService) UpdateCat(id uint, updatedCat *models.Cat) error {
 	cat, err := s.repo.FindByID(id)
+
 	if err != nil {
 		return err
 	}

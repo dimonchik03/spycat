@@ -4,7 +4,7 @@ import (
 	"errors"
 	"gorm.io/gorm"
 	"log"
-	"spycat/spycat/models"
+	"spycat/models"
 )
 
 type MissionRepository interface {

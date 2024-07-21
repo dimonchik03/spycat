@@ -3,7 +3,7 @@ package repositories
 import (
 	"errors"
 	"gorm.io/gorm"
-	"spycat/spycat/models"
+	"spycat/models"
 )
 
 type CatRepository interface {

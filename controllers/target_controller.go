@@ -4,8 +4,8 @@ package controllers
 
 import (
 	"net/http"
-	"spycat/spycat/models"
-	"spycat/spycat/services"
+	"spycat/models"
+	"spycat/services"
 	"strconv"
 
 	"github.com/gin-gonic/gin"

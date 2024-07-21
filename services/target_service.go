@@ -4,16 +4,16 @@ package services
 
 import (
 	"errors"
-	"spycat/spycat/models"
-	repositories2 "spycat/spycat/repositories"
+	"spycat/models"
+	"spycat/repositories"
 )
 
 type TargetService struct {
-	targetRepo  repositories2.TargetRepository
-	missionRepo repositories2.MissionRepository
+	targetRepo  repositories.TargetRepository
+	missionRepo repositories.MissionRepository
 }
 
-func NewTargetService(targetRepo repositories2.TargetRepository, missionRepo repositories2.MissionRepository) *TargetService {
+func NewTargetService(targetRepo repositories.TargetRepository, missionRepo repositories.MissionRepository) *TargetService {
 	return &TargetService{
 		targetRepo:  targetRepo,
 		missionRepo: missionRepo,

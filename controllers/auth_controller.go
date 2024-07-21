@@ -1,9 +1,10 @@
 package controllers
 
 import (
+	"github.com/dgrijalva/jwt-go"
 	"net/http"
 	"os"
-	"spycat/spycat/models"
+	"spycat/models"
 	"time"
 
 	"github.com/gin-gonic/gin"

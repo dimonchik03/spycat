@@ -3,25 +3,25 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	controllers2 "spycat/spycat/controllers"
-	repositories2 "spycat/spycat/repositories"
-	services2 "spycat/spycat/services"
+	"spycat/controllers"
+	"spycat/repositories"
+	"spycat/services"
 )
 
 func RegisterRoutes(router *gin.Engine, db *gorm.DB) {
-	catRepo := repositories2.NewCatRepository(db)
-	catService := services2.NewCatService(catRepo)
-	catController := controllers2.NewCatController(catService)
+	catRepo := repositories.NewCatRepository(db)
+	catService := services.NewCatService(catRepo)
+	catController := controllers.NewCatController(catService)
 
-	missionRepo := repositories2.NewMissionRepository(db)
-	missionService := services2.NewMissionService(missionRepo)
-	missionController := controllers2.NewMissionController(missionService, catService)
+	missionRepo := repositories.NewMissionRepository(db)
+	missionService := services.NewMissionService(missionRepo)
+	missionController := controllers.NewMissionController(missionService, catService)
 
-	targetRepo := repositories2.NewTargetRepository(db)
-	targetService := services2.NewTargetService(targetRepo, missionRepo)
-	targetController := controllers2.NewTargetController(targetService)
+	targetRepo := repositories.NewTargetRepository(db)
+	targetService := services.NewTargetService(targetRepo, missionRepo)
+	targetController := controllers.NewTargetController(targetService)
 
-	authController := controllers2.NewAuthController(db)
+	authController := controllers.NewAuthController(db)
 
 	// сat routes
 	router.POST("/cats", catController.CreateCat)

@@ -3,19 +3,19 @@ package controllers
 import (
 	"fmt"
 	"net/http"
-	"spycat/spycat/models"
-	services2 "spycat/spycat/services"
+	"spycat/models"
+	"spycat/services"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
 type MissionController struct {
-	MissionService *services2.MissionService
-	CatService     *services2.CatService
+	MissionService *services.MissionService
+	CatService     *services.CatService
 }
 
-func NewMissionController(missionService *services2.MissionService, catService *services2.CatService) *MissionController {
+func NewMissionController(missionService *services.MissionService, catService *services.CatService) *MissionController {
 	return &MissionController{MissionService: missionService, CatService: catService}
 }
 

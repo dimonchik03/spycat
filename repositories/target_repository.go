@@ -2,7 +2,7 @@ package repositories
 
 import (
 	"gorm.io/gorm"
-	"spycat/spycat/models"
+	"spycat/models"
 )
 
 type TargetRepository struct {

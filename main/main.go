@@ -3,11 +3,11 @@ package main
 import (
 	"log"
 	"os"
-	"spycat/spycat/config"
-	"spycat/spycat/database"
-	middleware2 "spycat/spycat/middleware"
-	models2 "spycat/spycat/models"
-	"spycat/spycat/routes"
+	"spycat/config"
+	"spycat/database"
+	"spycat/middleware"
+	"spycat/models"
+	"spycat/routes"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
@@ -26,7 +26,7 @@ func main() {
 	}
 
 	//  database migration
-	err = db.AutoMigrate(&models2.User{}, &models2.Cat{}, &models2.Mission{}, &models2.Target{})
+	err = db.AutoMigrate(&models.User{}, &models.Cat{}, &models.Mission{}, &models.Target{})
 
 	if err != nil {
 		log.Fatalf("failed to migrate database: %v", err)
@@ -41,11 +41,11 @@ func main() {
 	router := gin.Default()
 
 	//integrate logging middleware
-	router.Use(middleware2.Logger())
+	router.Use(middleware.Logger())
 
 	// integrate validation middleware
-	router.Use(middleware2.Validator())
-	router.Use(middleware2.AuthMiddleware())
+	router.Use(middleware.Validator())
+	router.Use(middleware.AuthMiddleware())
 	//register routes
 	routes.RegisterRoutes(router, db)
 
