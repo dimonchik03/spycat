@@ -43,8 +43,6 @@ func main() {
 	//integrate logging middleware
 	router.Use(middleware.Logger())
 
-	// integrate validation middleware
-	router.Use(middleware.Validator())
 	router.Use(middleware.AuthMiddleware())
 	//register routes
 	routes.RegisterRoutes(router, db)

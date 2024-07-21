@@ -18,17 +18,16 @@ func NewCatController(catService *services.CatService) *CatController {
 }
 
 func (ctrl *CatController) CreateCat(c *gin.Context) {
-	var cat models.Cat
-	if err := c.ShouldBindJSON(&cat); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	cat, exists := c.Get("cat")
+	if !exists {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Cat not found in context"})
 		return
 	}
 
-	if err := ctrl.CatService.CreateCat(&cat); err != nil {
+	if err := ctrl.CatService.CreateCat(cat.(*models.Cat)); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-
 	c.JSON(http.StatusCreated, cat)
 }
 
@@ -55,13 +54,13 @@ func (ctrl *CatController) GetCat(c *gin.Context) {
 
 func (ctrl *CatController) UpdateCat(c *gin.Context) {
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
-	var updatedCat models.Cat
-	if err := c.ShouldBindJSON(&updatedCat); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	updatedCat, exists := c.Get("cat")
+	if !exists {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Cat not found in context"})
 		return
 	}
 
-	if err := ctrl.CatService.UpdateCat(uint(id), &updatedCat); err != nil {
+	if err := ctrl.CatService.UpdateCat(uint(id), updatedCat.(*models.Cat)); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}

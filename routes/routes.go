@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"spycat/controllers"
+	"spycat/middleware"
 	"spycat/repositories"
 	"spycat/services"
 )
@@ -24,11 +25,15 @@ func RegisterRoutes(router *gin.Engine, db *gorm.DB) {
 	authController := controllers.NewAuthController(db)
 
 	// сat routes
-	router.POST("/cats", catController.CreateCat)
-	router.GET("/cats", catController.GetCats)
-	router.GET("/cats/:id", catController.GetCat)
-	router.PUT("/cats/:id", catController.UpdateCat)
-	router.DELETE("/cats/:id", catController.DeleteCat)
+	catGroup := router.Group("/cats")
+	catGroup.Use(middleware.CatValidator())
+	{
+		catGroup.POST("", catController.CreateCat)
+		catGroup.GET("", catController.GetCats)
+		catGroup.GET("/:id", catController.GetCat)
+		catGroup.PUT("/:id", catController.UpdateCat)
+		catGroup.DELETE("/:id", catController.DeleteCat)
+	}
 
 	// mission routes
 	router.POST("/missions", missionController.CreateMission)
